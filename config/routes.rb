@@ -1,9 +1,11 @@
 OSS::Application.routes.draw do
+  get "frontend/index"
+  devise_for :teachers
   devise_for :admins, controllers: {sessions: 'hq/sessions'}, path: 'hq',
              path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
                           confirmation: 'verification'}
   devise_for :users
-  root to: 'welcome#index'
+  root to: 'frontend#index'
   namespace :hq do
       resources :dashboard, only: [:index]
   end
