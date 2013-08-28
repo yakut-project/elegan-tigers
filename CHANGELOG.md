@@ -2,6 +2,7 @@
 #### [Current]
 
 #### 
+ * [787c92d](../../commit/787c92d) index oluşturuldu __(emineeliftoscali)__
  * [e21263e](../../commit/e21263e) modeller yaratildi __(emineeliftoscali)__
  * [b23f651](../../commit/b23f651) database düzeldi __(FatihDurmus)__
  * [ae1922e](../../commit/ae1922e) changelog.md changed __(Sadık Çetin)__
