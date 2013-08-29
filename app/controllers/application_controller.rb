@@ -19,9 +19,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if current_user
-      frontend_usersindex_path
-    elsif current_teacher
-      frontend_teachersindex_path
+      super
     else
       hq_dashboard_index_path
     end

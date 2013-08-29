@@ -1,24 +1,24 @@
 OSS::Application.routes.draw do
-  get "frontend/index"
-  get "frontend/teachersindex"
-  get "frontend/usersindex"
-  devise_for :teachers do
-    get "teacher/login" ,:to =>"devise/sessions#new"
-    get "teacher/logout", :to =>"devise/sessions#destroy"
+  root to: 'welcome#index'
+  namespace :hq do
+    root to: 'dashboard#index'
+    resources :dashboard, only: [:index]
   end
+
+  namespace :teachers do
+    root to: 'dashboard#index'
+    resources :dashboard, only: [:index]
+  end
+
 
   devise_for :admins, controllers: {sessions: 'hq/sessions'}, path: 'hq',
              path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
                           confirmation: 'verification'}
-  devise_for :users do
-    get "user/login", :to => "devise/sessions#new" # Add a custom sign in route for user sign in
-    get "user/logout", :to => "devise/sessions#destroy"
-  end
 
-  root to: 'frontend#index'
-  namespace :hq do
-      resources :dashboard, only: [:index]
-  end
+  devise_for :teachers, controllers: {sessions: 'teachers/sessions'}, path: 'teachers',
+             path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
+                          confirmation: 'verification'}
+  devise_for :users, :controllers => { :sessions => 'sessions', :registrations => 'registrations'}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

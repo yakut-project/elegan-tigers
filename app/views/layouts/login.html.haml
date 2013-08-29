@@ -4,7 +4,7 @@
 /[if lt IE 10]  <html class="no-js lt-ie10" lang="en-us">
 %html{lang: 'en', class: 'no-js'}
   %head
-    %title= yield_content :title
+    %title= yield :title
     %meta(http-equiv="content-type" content="text/html" charset="utf-8")
     %meta(http-equiv="x-ua-compatible" content="ie=edge,chrome=1")
     %meta(name="description" content="")
@@ -23,7 +23,7 @@
     / Stylesheets (Don't change include order)
     = stylesheet_link_tag 'application',
                           '//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css'
-    = yield_content :head
+    = yield :head
 
   %body.login
 
@@ -31,7 +31,7 @@
       = yield
 
     / Footer
-    = partial 'partials/footer'
+    = render 'layouts/partials/footer'
 
     / Google Analytics
-    = partial 'partials/trackers'
+    = render 'layouts/partials/trackers'
