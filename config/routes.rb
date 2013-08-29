@@ -3,8 +3,8 @@ OSS::Application.routes.draw do
   get "frontend/teachersindex"
   get "frontend/usersindex"
   devise_for :teachers do
-    get "teachers/login" ,:to =>"devise/sessions#new"
-    get "teachers/logout", :to =>"devise/sessions#destroy"
+    get "teacher/login" ,:to =>"devise/sessions#new"
+    get "teacher/logout", :to =>"devise/sessions#destroy"
   end
 
   devise_for :admins, controllers: {sessions: 'hq/sessions'}, path: 'hq',
