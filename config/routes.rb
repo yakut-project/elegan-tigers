@@ -1,10 +1,20 @@
 OSS::Application.routes.draw do
   get "frontend/index"
-  devise_for :teachers
+  get "frontend/teachersindex"
+  get "frontend/usersindex"
+  devise_for :teachers do
+    get "teachers/login" ,:to =>"devise/sessions#new"
+    get "teachers/logout", :to =>"devise/sessions#destroy"
+  end
+
   devise_for :admins, controllers: {sessions: 'hq/sessions'}, path: 'hq',
              path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
                           confirmation: 'verification'}
-  devise_for :users
+  devise_for :users do
+    get "user/login", :to => "devise/sessions#new" # Add a custom sign in route for user sign in
+    get "user/logout", :to => "devise/sessions#destroy"
+  end
+
   root to: 'frontend#index'
   namespace :hq do
       resources :dashboard, only: [:index]

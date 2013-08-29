@@ -10,30 +10,18 @@ class ApplicationController < ActionController::Base
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
+
   protected
   def set_user_time_zone
     Time.zone = current_user.time_zone if user_signed_in? && current_user.time_zone.present?
   end
 
-
-
-  def devise_parameter_sanitizer
-    if resource_class == User
-      User::ParameterSanitizer.new(User, :user, params)
-    elsif resource_class == Teacher
-      User::ParameterSanitizer.new(Teacher, :teacher, params)
-    else
-      super # Use the default one
-    end
-  end
-
-
   def after_sign_in_path_for(resource_or_scope)
     if current_user
-      super
+      frontend_usersindex_path
     elsif current_teacher
-      super
+      frontend_teachersindex_path
     else
       hq_dashboard_index_path
     end
