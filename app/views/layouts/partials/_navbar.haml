@@ -1,0 +1,20 @@
+#navbar.navbar
+  %a.navbar-brand{:href => '#'}
+
+    OSS
+  %ul.nav.navbar-nav.pull-right
+    %li.dropdown
+      %a.dropdown-toggle{data: {toggle: 'dropdown'}, :href => '#'}
+
+    %li.dropdown.user
+      %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+        %i.icon-user
+    - if user_signed_in?
+      %li
+        = link_to('Logout', user_logout_path)
+    - else
+      %li
+        = link_to('Login', user_login_path)
+
+
+
