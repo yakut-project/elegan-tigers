@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
   def devise_parameter_sanitizer
     if resource_class == User
       User::ParameterSanitizer.new(User, :user, params)
+    elsif resource_class == Teacher
+      User::ParameterSanitizer.new(Teacher, :teacher, params)
     else
       super # Use the default one
     end
@@ -29,6 +31,8 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if current_user
+      super
+    elsif current_teacher
       super
     else
       hq_dashboard_index_path
