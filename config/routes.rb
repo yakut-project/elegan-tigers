@@ -18,7 +18,9 @@ OSS::Application.routes.draw do
   devise_for :teachers, controllers: {sessions: 'teachers/sessions'}, path: 'teachers',
              path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
                           confirmation: 'verification'}
-  devise_for :users, :controllers => { :sessions => 'sessions', :registrations => 'registrations'}
+  devise_for :users, :controllers => { :sessions => 'sessions', :registrations => 'registrations',
+   path_names: {sign_in: 'login', sign_out: 'logout', password: 'secret',
+                confirmation: 'verification'}}
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
