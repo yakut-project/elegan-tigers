@@ -4,9 +4,6 @@
   = f.error_notification
   .form-inputs
     = f.input :email, :required => true, :autofocus => true
-    = f.input :twitter, :required => false, :autofocus => true
-    = f.input :github, :required => false, :autofocus => true
-    = f.input :website, :required => false, :autofocus => true
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
         Currently waiting confirmation for: #{resource.unconfirmed_email}

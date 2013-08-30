@@ -9,12 +9,12 @@
     %li.dropdown.user
       %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
         %i.icon-user
-    - if hq_signed_in?
+    - if admin_signed_in?
       %li
-        =link_to('Logout',destroy_hq_session_path)
+        =link_to('Logout',destroy_admin_session_path)
     - else
       %li
-        = link_to('Login', new_hq_session_path)
+        = link_to('Login', new_admin_session_path)
 
 
 
